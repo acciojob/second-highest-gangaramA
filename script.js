@@ -1,18 +1,20 @@
 function secondHighest(arr) {
+    // Edge case: Empty array or only one element in the array
     if (arr.length < 2) {
         return -Infinity;
     }
     
+    // Convert array to a set to remove duplicates
     let uniqueElements = new Set(arr);
     
+    // If there's less than 2 unique elements, return -Infinity
     if (uniqueElements.size < 2) {
         return -Infinity;
     }
     
-    let maxElement = Math.max(...uniqueElements);
-    uniqueElements.delete(maxElement);
+    // Convert set to an array and sort in descending order
+    let sortedArray = Array.from(uniqueElements).sort((a, b) => b - a);
     
-    let secondMaxElement = Math.max(...uniqueElements);
-    
-    return secondMaxElement;
+    // Return the second element in the sorted array
+    return sortedArray[1];
 }
